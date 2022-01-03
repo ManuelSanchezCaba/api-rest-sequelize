@@ -25,4 +25,4 @@ app.use('/employee', require('./routes/employee.routes'));
 app.use(require('./routes/auth.routes'));
 app.use(notFoundEndpoint);
 
-module.exports = { app };
+module.exports = app;

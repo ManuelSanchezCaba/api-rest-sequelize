@@ -3,9 +3,9 @@ const departmentModel = require('../models/Department');
 const getAllDepartment = async (req, res) => {
 	try {
 		const departments = await departmentModel.findAll();
-		res.json(departments);
+		res.status(200).json(departments);
 	} catch (error) {
-		res.json(error);
+		res.status(500).json(error);
 	}
 };
 
@@ -13,9 +13,9 @@ const getDepartmentByID = async (req, res) => {
 	try {
 		const { id } = req.params;
 		const department = await departmentModel.findByPk(id);
-		res.json(department);
+		res.status(200).json(department);
 	} catch (error) {
-		res.json(error);
+		res.status(500).json(error);
 	}
 };
 
@@ -23,9 +23,9 @@ const createDepartment = async (req, res) => {
 	try {
 		const { descr } = req.body;
 		await departmentModel.create({ descr });
-		res.send('Department Created');
+		res.status(200).send('Department Created');
 	} catch (error) {
-		res.json(error);
+		res.status(500).json(error);
 	}
 };
 
@@ -42,12 +42,12 @@ const updateDepartment = async (req, res) => {
 		);
 
 		if (result === 1) {
-			res.send('Department Updated');
+			res.status(200).send('Department Updated');
 		} else {
-			res.send('Department Not Exist');
+			res.status(400).send('Department Not Exist');
 		}
 	} catch (error) {
-		res.json(error);
+		res.status(500).json(error);
 	}
 };
 
@@ -61,12 +61,12 @@ const deleteDepartment = async (req, res) => {
 		});
 
 		if (result === 1) {
-			res.send('Department Deleted');
+			res.status(200).send('Department Deleted');
 		} else {
-			res.send('Department Not Exist Or Was Deleted');
+			res.status(400).send('Department Not Exist Or Was Deleted');
 		}
 	} catch (error) {
-		res.json(error);
+		res.status(500).json(error);
 	}
 };
 

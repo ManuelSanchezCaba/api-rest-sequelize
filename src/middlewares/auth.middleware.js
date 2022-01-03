@@ -24,7 +24,7 @@ const verifyToken = async (req, res, next) => {
 
 		next();
 	} catch (error) {
-		res.status(401).json({ message: 'Unauthorized' });
+		res.status(401).json({ message: 'Unauthorized', error });
 	}
 };
 
@@ -41,8 +41,6 @@ const isAdmin = async (req, res, next) => {
 				descr: 'admin',
 			},
 		});
-
-		console.log(userRoles);
 
 		if (userRoles.filter((x) => x.idRole === role.id).length > 0) {
 			return next();
@@ -67,8 +65,6 @@ const isUser = async (req, res, next) => {
 				descr: 'user',
 			},
 		});
-
-		console.log(userRoles);
 
 		if (userRoles.filter((x) => x.idRole === role.id).length > 0) {
 			return next();
